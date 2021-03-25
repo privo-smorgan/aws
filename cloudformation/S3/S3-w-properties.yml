@@ -1,0 +1,42 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "S3 Bucket"
+
+Parameters:
+  paramBucketName:
+    Type: "String"
+    Description: "Name of the bucket"
+    MinLength: 3
+    MaxLength: 63
+    AllowedPattern: ^[a-z\d\-\.]*$
+
+  paramVersioningConfiguration:
+    Type: "String"
+    Description: "Versioning Configuration Value"
+    AllowedValues:
+      - "Enabled"
+      - "Suspended"
+    Default: "Enabled"
+  
+  paramOwner:
+    Type: "String"
+    Default: "SMorgan"
+
+  paramEnvironment:
+    Type: "String"
+    Default: "Onboarding-Sandbox"
+
+Resources:
+  SMorganBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref paramBucketName
+      VersioningConfiguration: 
+        Status: !Ref paramVersioningConfiguration
+      Tags:
+        - Key: "environment"
+          Value: !Ref paramEnvironment
+        - Key: "managed-by"
+          Value: "cloudformation"
+        - Key: "owner"
+          Value: !Ref paramOwner

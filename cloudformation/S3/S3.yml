@@ -1,4 +1,12 @@
 Resources:
   SMorganBucket:
-    Type: AWS::S3:Bucket
-    
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "smorganbucket"
+      Tags:
+        - Key: "environment"
+          Value: "Onboarding"
+        - Key: "managed-by"
+          Value: "cloudformation"
+        - Key: "owner"
+          Value: "SMorgan"
