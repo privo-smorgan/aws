@@ -1,0 +1,4 @@
+Resources:
+  SMorganBucket:
+    Type: AWS::S3:Bucket
+    
